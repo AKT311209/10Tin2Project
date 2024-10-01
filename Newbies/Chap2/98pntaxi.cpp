@@ -7,7 +7,7 @@ int main() {
     cin >> x;
     if (x==1) {
         cout << 10000;
-    } else if (2<=x && x <=6)
+    } else if (x <=6)
     {
         cout << 10000 +(x-1)*8000;
     } else {

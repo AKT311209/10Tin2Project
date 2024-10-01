@@ -2,25 +2,25 @@
 
 using namespace std;
 
-
-int main() {
+int main()
+{
     long long a;
     cin >> a;
-    if (a==2)
+    switch (a)
     {
+    case 1:
+    case 3:
+    case 5:
+    case 7:
+    case 8:
+    case 10:
+    case 12: cout << 31;
+        break;
+        case 2:
         cout << 29;
-    } else if (a>=8 && a%2==0)
-    {
-        cout << 31;
-    } else if (a>=8 && a%2==1)
-    {
+
+    default:
         cout << 30;
-    } else if (a<8 && a%2==1) {
-        cout << 31;
-    } else {
-        cout << 30;
+        break;
     }
-    
-    
-    
 }
