@@ -8,4 +8,5 @@ int main()
     cin >> a >> b >> c;
     cout << min(a, min(b, c)) << ' ' << (a+b+c)-min(a, min(b, c))-max(a, max(b, c)) << ' ' << max(a, max(b, c));
 
+    return 0;
 }

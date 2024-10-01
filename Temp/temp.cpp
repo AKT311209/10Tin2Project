@@ -4,11 +4,17 @@ using namespace std;
 
 int main()
 {
-    if (fopen("loop6.inp", "r")) {
-        freopen("loop6.inp", "r", stdin);
-        freopen("loop6.out", "w", stdout);
+    // Calculate fibonacci series
+    int n;
+    cin >> n;
+    int a = 0, b = 1;
+    cout << a << " " << b << " "; // 0 1
+    for (int i = 2; i < n; i++)
+    {
+        int c = a + b; // 0 + 1 = 1
+        cout << c << " "; // 1
+        a = b;
+        b = c;
     }
-    long a, b;
-    cin >> a >> b;
-    cout << gcd(a, b) << '\n' << lcm(a, b);
+    
 }
