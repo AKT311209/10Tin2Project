@@ -29,5 +29,6 @@ int main()
         // Find k
         long long value = colk + (k - posfirst) * m;
         cout << value;
+        
     }
 }

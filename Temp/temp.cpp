@@ -2,19 +2,20 @@
 
 using namespace std;
 
-int main()
+int main() 
 {
-    // Calculate fibonacci series
-    int n;
-    cin >> n;
-    int a = 0, b = 1;
-    cout << a << " " << b << " "; // 0 1
-    for (int i = 2; i < n; i++)
-    {
-        int c = a + b; // 0 + 1 = 1
-        cout << c << " "; // 1
-        a = b;
-        b = c;
-    }
+    // 1. Declare variables
+    long long a, b, c, d;
+    cin >> a >> b >> c >> d;
+
+    // 2. Calculate sum of all numbers
+    long long sum = a + b + c + d;
+
+    // 3. Take average of all numbers
     
-}
+    double avg = (double)sum / 4;
+
+    // 4. Print average
+    cout << fixed << setprecision(2) << avg << '\n';
+    return 0;
+} 

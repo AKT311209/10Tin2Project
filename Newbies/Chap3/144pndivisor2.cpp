@@ -3,9 +3,9 @@
 using namespace std;
 
 int main() {
-    int n;
-    cin >> n;
-    for (int i = 5; i <= n; i += 5) {
+    int m, n;
+    cin >> m >> n;
+    for (int i = m; i <= n; i+=m) {
         cout << i << ' ';
     }
 }

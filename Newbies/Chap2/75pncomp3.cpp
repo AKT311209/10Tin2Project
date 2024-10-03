@@ -6,5 +6,6 @@ using namespace std;
 int main() {
     int a, b, c, d;
     cin >> a >> b >> c >> d;
-    cout << ((double)a/b < (double)c/d ? "YES" : "NO");
+    cout << ((a * d < b * c) ? "YES" : "NO") << '\n';
+    return 0;
 }
