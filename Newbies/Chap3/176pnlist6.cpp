@@ -6,17 +6,24 @@ int main()
 {
     long long n, x;
     cin >> n;
-    long long sum = 0;
+    long long countpositive = 0;
+    long long sumnpositive = 0;
     for (long long i = 1; i <= n; i++)
     {
         cin >> x;
-        if (i % 2 == 1)
+        if (x >= 0)
         {
-            sum += x;
-        } else {
-            sum -= x;
+            countpositive++;
+            sumnpositive += x;
         }
     }
-    cout << sum;
+    if (countpositive == 0)
+    {
+        cout << -1;
+    }
+    else
+    {
+        cout << fixed << setprecision(2) << (double)sumnpositive / countpositive;
+    }
     return 0;
 }
