@@ -9,9 +9,8 @@ int main()
     for (int i = 1; i <= m; i++)
     {
         cin >> x;
-        if (x <= 1)
+        if (x < 1 || x > n)
         {
-            prev = x + 1;
             continue;
         }
         for (int j = prev; j < x; j++)
