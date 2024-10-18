@@ -3,18 +3,20 @@
 using namespace std;
 
 int main() {
-    if (fopen("demcp.inp", "r")) {
-        freopen("demcp.inp", "r", stdin);
-        freopen("demcp.out", "w", stdout);
+    if (fopen("uocnt.inp", "r")) {
+        freopen("uocnt.inp", "r", stdin);
+        freopen("uocnt.out", "w", stdout);
     }
-    long long m, n;
-    cin >> m >> n;
-
-    // Find the square num >= m
-    long long a = ceil(sqrt(m));
-
-    // Find the square num <= n
-    long long b = floor(sqrt(n));
-
-    cout << b - a + 1;
+    long long n;
+    cin >> n;
+    long long count = 0;
+    for (long long i = 2; i <= n; i++) {
+        if (n % i == 0) {
+            count++;
+            while (n % i == 0) n /= i;
+            i--;
+        }
+    }
+    if (n > 1) count++;
+    cout << count;
 }

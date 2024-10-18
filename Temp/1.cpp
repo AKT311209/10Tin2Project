@@ -3,15 +3,12 @@
 using namespace std;
 
 int main() {
-    if (fopen("tongchuso.inp", "r")) {
-        freopen("tongchuso.inp", "r", stdin);
-        freopen("tongchuso.out", "w", stdout);
+    if (fopen("rab.inp", "r")) {
+        freopen("rab.inp", "r", stdin);
+        freopen("rab.out", "w", stdout);
     }
-    long long n, sum = 0;
-    cin >> n;
-    while (n > 0) {
-        sum += n % 10;
-        n /= 10;
-    }
-    cout << sum;
+    long long x, y, a, b;
+    cin >> x >> y >> a >> b;
+    if ((y-x)%(a+b)==0) cout << (y-x)/(a+b);
+    else cout << -1;
 }
