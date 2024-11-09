@@ -5,16 +5,25 @@ using namespace std;
 int main() {
     string s;
     getline(cin, s);
+    // Lowercase all characters
+    for (size_t i = 0; i < s.length(); i++) {
+        if (s[i] >= 65 && s[i] <= 90) {
+            s[i] += 32;
+        }
+    }
+    // Count the number of unique characters occuring only once
     long long count = 0;
     for (int i = 97; i <= 122; i++) {
-        char c = s[i];
+        char c = i;
         size_t found = s.find(c);
         if (found != string::npos) {
             if (s.find(c, found+1) == string::npos) {
                 count++;
             }
         }
-    }    bool isPrime = true;
+    }     
+    // Check if the count is prime
+    bool isPrime = true;
     if (count == 0 || count == 1) {
         isPrime = false;
     } else {
@@ -25,9 +34,5 @@ int main() {
             }
         }
     }
-    if (isPrime) {
-        cout << "YES";
-    } else {
-        cout << "NO";
-    }
+    cout << (isPrime ? "YES" : "NO");
 }
