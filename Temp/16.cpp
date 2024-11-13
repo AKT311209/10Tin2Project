@@ -7,10 +7,10 @@ int main() {
     cin >> n >> x >> y;
     for (long long i = 1; i <= n; i++) {
         for (long long j = 1; j <= n; j++) {
-            if (max(abs(i-x), abs(j-y)) % 2) {  
-                cout << "◻";
-            } else {
+            if ((abs(i-x)+abs(j-y))%3==0) {
                 cout << "◼";
+            } else {
+                cout << "◻";
             }
         }
         cout << '\n';
