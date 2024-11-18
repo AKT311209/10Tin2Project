@@ -2,7 +2,8 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     string first, mid, family;
     cin >> first >> mid >> family;
     cout << family << " " << mid << " " << first;
