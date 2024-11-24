@@ -8,6 +8,10 @@ int main() {
     cin >> s >> a >> b;
 
     s = " "+s;
-    s.erase(a, b - a + 1);
-    cout << s;
+    for (size_t i = 1; i < s.length(); i++) {
+        if (a<=i && i<=b) {
+            continue;
+        }
+        cout << s[i];
+    }
 }

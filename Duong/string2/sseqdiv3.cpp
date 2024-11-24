@@ -18,21 +18,23 @@ int main() {
         modsumdigits %= 3;
     }
 
-    vector<int> prefix(s.size() + 2, 0);
+    vector<int> prefix(1, 0);
     for (int i = 0; i < s.size(); i++) {
-        prefix[i + 1] = prefix[i] + (s[i] - '0');
+        prefix.push_back(prefix[i] + (s[i] - '0'));
     }
 
     int count = 0;
-    for (size_t i = 0; i < s.size(); i++) {
-        for (size_t j = i + 1; j <= s.size(); j++) {
-            int sum = prefix[j] - prefix[i];
-            if ((modsumdigits-sum) % 3 == 0) {
-                count++;
-            }
-        }
+    int total = modsumdigits % 3;
+    vector<int> cnt(3, 0);
+    cnt[0]++;
+    int mod_prefix = 0;
+    for (char c : s) {
+        mod_prefix = (mod_prefix + (c - '0')) % 3;
+        int need = ((mod_prefix - total + 3) % 3);
+        count += cnt[need];
+        cnt[mod_prefix]++;
     }
-    if (stoi(s) % 3 != 0) {
+    if (modsumdigits % 3 != 0) {
         count--;
     }
     cout << count;

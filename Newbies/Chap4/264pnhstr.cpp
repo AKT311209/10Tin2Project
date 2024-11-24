@@ -24,7 +24,9 @@ int main()
         {
             cout << "NO";
             return 0;
+            
         }
     }
+    
     cout << "YES";
 }

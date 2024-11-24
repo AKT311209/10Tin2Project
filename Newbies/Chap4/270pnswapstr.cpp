@@ -7,13 +7,12 @@ int main() {
     getline(cin, s);
     int n;
     cin >> n;
-    s = " " + s;
     for (int i = 1; i <= n; i++) {
         int a, b;
         cin >> a >> b;
-        string sub = s.substr(a, b - a + 1);
-        s.erase(a, b - a + 1);
-        s.insert(1, sub);
+        a--;
+        b--;
+        rotate(s.begin() + a, s.begin() + a + 1, s.begin() + b + 1);
     }
     cout << s;
 }

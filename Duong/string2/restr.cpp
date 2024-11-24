@@ -18,6 +18,7 @@ int main() {
     }
     for (size_t i = 0; i < s.size(); i++) {
         if (s[i]!='?') countchar[s[i] - 'a']--;
+        else continue;
         if (countchar[s[i] - 'a'] < 0) {
             cout << -1;
             return 0;

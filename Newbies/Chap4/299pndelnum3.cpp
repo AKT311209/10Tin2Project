@@ -18,5 +18,5 @@ int main()
         res.pop_back();
         k--;
     }
-    cout << stoi(res);
+    cout << stoll(res);
 }
