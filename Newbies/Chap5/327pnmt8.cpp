@@ -4,7 +4,8 @@ using namespace std;
 
 int main() {
     long long m, n;
-    cin >> m >> n;
+    cin >> m;
+    n = m;
     long long matrix[m+1][n+1];
 
     for (long long i = 1; i <= m; i++)

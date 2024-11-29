@@ -11,7 +11,7 @@ int main() {
     cin >> s;
     // Compress string
     string res;
-    for (size_t i = (s.size())/2; i>=1; i--) {
+    for (size_t i = (s.size()-1)/2; i>=1; i--) {
         string temp = s.substr(0, i);
         bool flag = true;
         for (size_t j = i; j <= s.size()+i; j+=i) {
@@ -27,7 +27,7 @@ int main() {
         if (!flag) {
             continue;
         }
-        if (temp[0]>res[0]) res = to_string(s.size()/temp.size()) + temp;
+        if (temp[0]>res[0]) res = temp;
     }
     if (res.empty()) res = "1" + s;
     cout << res;
