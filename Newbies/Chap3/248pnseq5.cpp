@@ -5,7 +5,6 @@ using namespace std;
 int main() {
     long long n, x;
     cin >> n;
-    // Count the number of consecutive alternate positive and negative numbers
     long long count = 0; long long maxcount = 0;
     int sign = 1; int prevsign = 1;
     for (int i = 0; i < n; i++) {

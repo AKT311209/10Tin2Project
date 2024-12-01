@@ -11,11 +11,14 @@ int main() {
         cin >> a[i];
     }
 
-    for (long long i = 1; i <= n/2; i++) {
-        swap(a[i], a[n-i+1]);
+    vector<long long> res;
+    res.push_back(0);
+    for (long long i = 1; i <= (n+1)/2; i++) {
+        res.push_back(a[i]);
+        res.push_back(a[n-i+1]);
     }
 
     for (long long i = 1; i <= n; i++) {
-        cout << a[i] << " ";
+        cout << res[i] << " ";
     }
 }
