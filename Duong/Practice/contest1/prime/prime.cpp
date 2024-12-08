@@ -11,7 +11,7 @@ void sieveRun()
     memset(sieve, true, sizeof(sieve));
     sieve[0] = sieve[1] = false;
     primefact[0] = primefact[1] = {};
-    for (int i = 2; i <= MAX; i++)
+    for (int i = 2; i*i<= MAX; i++)
     {
         if (sieve[i])
         {

@@ -3,18 +3,18 @@
 using namespace std;
 
 vector<long long> given;
-bool sieve[20000001];
+bool sieve[10000001];
 
 void sieve_run()
 {
     memset(sieve, true, sizeof(sieve));
     sieve[0] = false;
     sieve[1] = false;
-    for (long long i = 2; i * i <= 20000000; i++)
+    for (long long i = 2; i * i <= 10000000; i++)
     {
         if (sieve[i] == true)
         {
-            for (long long j = i * i; j <= 20000000; j += i)
+            for (long long j = i * i; j <= 10000000; j += i)
             {
                 sieve[j] = false;
             }
@@ -56,7 +56,7 @@ int main()
 
     vector <long long> prefix;
     prefix.push_back(0);
-    for (long long i = 1; i <= 20000001; i++)
+    for (long long i = 1; i <= 10000001; i++)
     {
         if (sieve[i] == false) prefix.push_back(prefix.back());
         else prefix.push_back(prefix.back() + count_mul(i));
@@ -65,6 +65,7 @@ int main()
     {
         long long l, r;
         cin >> l >> r;
+        if (r > 10000000) r = 10000000;
         cout << prefix[r] - prefix[l - 1] << '\n';
     }
 }
