@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
 int main()
@@ -13,24 +12,25 @@ int main()
     long long n, k;
     cin >> n >> k;
 
-    vector<string> v;
-    v.push_back(" ");
-
-    for (long long i = 1; i <= n; i++)
+    vector<int> len(n);
+    for (auto &s : len)
     {
-        string s;
-        cin >> s;
-        v.push_back(s);
+        string temp;
+        cin >> temp;
+        s = temp.length();
     }
 
     long long count = 0;
-    for (long long i = 1; i <= n; i++)
+    int freq[21] = {0};
+
+    for (long long i = 0; i < n; ++i)
     {
-        for (long long j = i + 1; j <= i+k; j++)
+        if (i > k)
         {
-            if (v[i].length() == v[j].length())
-                count++;
+            freq[len[i - k - 1]]--;
         }
+        count += freq[len[i]];
+        freq[len[i]]++;
     }
 
     cout << count;
