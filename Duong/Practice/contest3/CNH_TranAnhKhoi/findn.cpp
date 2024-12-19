@@ -31,7 +31,7 @@ int main()
         string binary = "";
         for (int i = 0; i < L; i++)
         {
-            binary = to_string(offset % 2) + binary;
+            binary = to_string(offset % 2) + binary; 
             offset /= 2;
         }
         string number = "";

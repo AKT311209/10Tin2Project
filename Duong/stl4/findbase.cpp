@@ -2,31 +2,68 @@
 
 using namespace std;
 
-map<long long, long long> base;
+unordered_map<long long, long long> base;
 
 void prep()
 {
-    for (long long i = 2; i <= 1000000; i++)
+    base[1] = 1;
+    for (long long i = 2; i <= 1e6; i++)
     {
-        if (base[i])
-            continue;
-        for (long long j = i * i; j <= 1000000000000; j *= i)
+        long long j = i * i * i;
+        while (1)
         {
-            base[j] = i;
+            if (!base[j])
+            {
+                base[j] = i;
+            }
+            if (j > 1e18 / i)
+            {
+                break;
+            }
+            j *= i;
         }
     }
 }
 
+long long base2(long long n)
+{
+    if (round(sqrt(n)) * round(sqrt(n)) == n)
+    {
+        return round(sqrt(n));
+    }
+    return -1;
+}
+
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-
+    ios::sync_with_stdio(0);
+    cin.tie(0);
     if (fopen("findbase.inp", "r"))
     {
         freopen("findbase.inp", "r", stdin);
         freopen("findbase.out", "w", stdout);
     }
+    prep();
 
+    long long query;
+    cin >> query;
+
+    for (long long i = 0; i < query; i++)
+    {
+        long long n;
+        cin >> n;
+        if (base[n])
+        {
+            cout << base[n] << '\n';
+        }
+        else
+        {
+            long long res = base2(n);
+            if (res != -1)
+            {
+                cout << res << '\n';
+            }
+        }
+    }
+    return 0;
 }
-
