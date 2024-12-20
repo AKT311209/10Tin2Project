@@ -19,16 +19,20 @@ int main()
         cin >> x.first >> x.second;
     }
 
+    sort(a.begin(), a.end(), greater<pair<long long, long long>>());
     long long res = 0;
-    long long remain = m;
+    long long cur = 0;
     for (auto x : a)
     {
-        x.second += remain;
         res += (x.second / m) * (x.first);
-        remain = x.second % m;
+        x.second %= m;
+        cur -= x.second;
+        if (cur < 0)
+        {
+            res += x.first;
+            cur += m;
+        }
     }
-    if (remain != 0)
-        res += a[n - 1].first;
 
     cout << res * 2;
 }

@@ -6,22 +6,31 @@ int main() {
     long long n;
     cin >> n;
 
-    long long a[n + 2];
-    a[0] = LLONG_MIN;
-    a[n + 1] = LLONG_MAX;
-
+    vector<long long> a(n + 1);
     for (int i = 1; i <= n; i++) {
         cin >> a[i];
     }
-
-    long long maxdis = -1;
+    
+    long long maxLen = 0;
     for (long long mid = 1; mid <= n; mid++) {
-        long long dist = 0;
-        while (a[mid - dist] == a[mid + dist]) {
-            dist++;
+        // Odd length
+        {
+            long long dist = 0;
+            while (mid - dist >= 1 && mid + dist <= n && a[mid - dist] == a[mid + dist]) {
+                dist++;
+            }
+            maxLen = max(maxLen, 2LL * dist - 1LL);
         }
-        maxdis = max(maxdis, dist - 1);
+    
+        // Even length
+        {
+            long long dist = 0;
+            while (mid - dist >= 1 && (mid + dist + 1) <= n && a[mid - dist] == a[mid + dist + 1]) {
+                dist++;
+            }
+            maxLen = max(maxLen, 2LL * dist);
+        }
     }
-
-    cout << 2 * maxdis + 1;
+    
+    cout << maxLen;
 }
