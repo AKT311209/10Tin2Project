@@ -4,21 +4,21 @@ using namespace std;
 
 int main()
 {
-    int n;
+    long long n;
     cin >> n;
 
-    vector<int> a;
+    vector<long long> a(n*2);
 
-    int temp;
-    while (cin >> temp)
+    for (long long i = 0; i < n*2; i++)
     {
-        a.push_back(temp);
+        cin >> a[i];
     }
 
     sort(a.begin(), a.end());
 
-    for (int i = 0; i < n; i++)
+    for (long long i = 0; i < n*2; i++)
     {
         cout << a[i] << ' ';
     }
+    return 0;
 }
