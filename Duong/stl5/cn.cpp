@@ -1,10 +1,14 @@
+
 #include <bits/stdc++.h>
 using namespace std;
 
-const int MOD = 1e9 + 7;
+const int MOD = 1000000007;
 
 int main()
 {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
     if (fopen("cn.inp", "r"))
     {
         freopen("cn.inp", "r", stdin);
@@ -13,20 +17,32 @@ int main()
     int N;
     cin >> N;
     vector<long long> A(N), B(N);
+    for (int i = 0; i < N; i++)
+        cin >> A[i];
+    for (int i = 0; i < N; i++)
+        cin >> B[i];
+
+    vector<pair<long long, char>> V;
+    V.reserve(2 * N);
     for (auto &x : A)
-        cin >> x;
+        V.push_back({x, 'A'});
     for (auto &x : B)
-        cin >> x;
-    sort(A.begin(), A.end());
-    sort(B.begin(), B.end());
-    vector<vector<long long>> dp(N + 1, vector<long long>(N + 1, 0));
-    dp[0][0] = 1;
-    for (int i = 1; i <= N; i++)
+        V.push_back({x, 'B'});
+
+    sort(V.begin(), V.end());
+    long long unmatch = 0, ans = 1;
+    for (auto &p : V)
     {
-        for (int j = i; j <= N; j++)
+        if (p.second == 'A')
         {
-            dp[i][j] = (dp[i][j - 1] + dp[i - 1][j - 1]) % MOD;
+            unmatch++;
+        }
+        else
+        {
+            ans = (ans * unmatch) % MOD;
+            unmatch--;
         }
     }
-    cout << dp[N][N] << endl;
+    cout << ans % MOD << "\n";
+    return 0;
 }

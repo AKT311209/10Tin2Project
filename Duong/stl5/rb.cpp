@@ -9,38 +9,41 @@ int main()
         freopen("rb.inp", "r", stdin);
         freopen("rb.out", "w", stdout);
     }
+    long long n;
+    cin >> n;
+    vector<pair<pair<int, int>, int>> a(2 * n);
 
-    long long points;
-    cin >> points;
-
-    vector<pair<long long, long long>> red(points);
-    multiset<pair<long long, long long>> blue;
-
-    for (long long i = 0; i < points; i++)
+    for (int i = 0; i < n; i++)
     {
-        cin >> red[i].first >> red[i].second;
+        cin >> a[i].first.first >> a[i].first.second;
+        a[i].second = 1;
     }
 
-    for (long long i = 1; i <= points; i++)
+    for (int i = n; i < 2 * n; i++)
     {
-        long long first, second;
-        cin >> first >> second;
-        blue.insert({first, second});
+        cin >> a[i].first.first >> a[i].first.second;
+        a[i].second = 0;
     }
 
+    sort(a.begin(), a.end());
 
-    sort(red.begin() + 1, red.end());
     long long count = 0;
-    for (auto pair : red)
+    set<int> s;
+    for (int i = 2*n-1; i >= 0; i--)
     {
-        auto it = blue.begin();
-        while (it != blue.end() && it->first < pair.first)
-            it++;
-        while (it != blue.end() && it->second < pair.second)
-            it++;
-        if (it == blue.end()) continue;
-        blue.erase(it);
-        count++;
+        if (a[i].second == 0)
+        {
+            s.insert(a[i].first.second);
+        }
+        else
+        {
+            auto it = s.upper_bound(a[i].first.second);
+            if (it != s.end())
+            {
+                count++;
+                s.erase(it);
+            }
+        }
     }
 
     cout << count;
