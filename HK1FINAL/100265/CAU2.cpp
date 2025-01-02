@@ -17,11 +17,11 @@ int main() {
     long long rightx = (r/x)*x;
     long long lefty = ((l-1)/y+1)*y;
     long long righty = (r/y)*y;
-    long long lcm = x*y/gcd(x, y);
+    long long lcm = x*y/(__gcd(x, y));
     long long leftlcm = ((l-1)/lcm+1)*lcm;
     long long rightlcm = (r/lcm)*lcm;
 
-    long long sumdiv = (rightx+leftx)*((rightx-leftx)/x+1)/2 + (righty+lefty)*((righty-lefty)/y+1)/2 - (rightlcm+leftlcm)*((rightlcm-leftlcm)/(x*y)+1)/2;
+    long long sumdiv = (rightx+leftx)*((rightx-leftx)/x+1)/2 + (righty+lefty)*((righty-lefty)/y+1)/2 - (rightlcm+leftlcm)*((rightlcm-leftlcm)/(lcm)+1)/2;
     long long sumtotal = (r+l)*(r-l+1)/2;
     long long sum = sumtotal - sumdiv;
     cout << sum;
