@@ -1,8 +1,4 @@
 """
-Current problems:
-1. Add handling for unsuccessful submissions due to wrong cookie or csrfmiddlewaretoken
-"""
-"""
 AutoSubmission module for submitting problems to an online judge.
 """
 import os
