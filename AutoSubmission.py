@@ -134,8 +134,8 @@ if os.path.exists('Files'):
 os.mkdir('Files')
 for selected_file in select_files():
     shutil.copy(selected_file, 'Files')
-for folder, subfolder, file in os.walk('Files'):
-    for file in file:
+for folder, subfolder, files in os.walk('Files'):
+    for file in files:
         Submission_count += 1
         with open(os.path.join(folder, file), 'r') as f:
             content = f.read()
