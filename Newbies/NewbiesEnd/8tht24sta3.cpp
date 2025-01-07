@@ -1,43 +1,71 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
+int main()
+{
     long long n;
     cin >> n;
-
-    // Largest
-    string mx;
-    long long leftover = n;
-    if (leftover % 2 != 0) {
-        mx.push_back('7');
-        leftover -= 3;
-    }
-    while (leftover > 0) {
-        mx.push_back('1');
-        leftover -= 2;
-    }
-
-    const int cost[10] = {6,2,5,5,4,5,6,3,7,6}; // matches for digits 0-9
-
-    // Build smallest number with DP
-    vector<int> dp(n+1, 1e9), from(n+1,-1), dig(n+1,-1);
-    dp[0] = 0;
-    for(int i=0;i<=n;i++){
-        if(dp[i] == 1e9) continue;
-        for(int d=0; d<10; d++){
-            if(i==0 && d==0 && n>6) continue; // avoid leading zero for multi-digit
-            int nxt = i + cost[d];
-            if(nxt<=n && dp[i]+1 < dp[nxt]){
-                dp[nxt] = dp[i]+1; 
-                from[nxt] = i; 
-                dig[nxt] = d;
-            }
+    long long count8 = n / 7;
+    long long remain = n % 7;
+    if (n % 7 == 1)
+    {
+        count8 -= 1;
+        remain = 8;
+        cout << 10;
+        for (long long i = 1; i <= count8; i++)
+        {
+            cout << 8;
         }
     }
-    string mn;
-    for(int x=n;x>0;x=from[x]) mn.push_back(char('0'+dig[x]));
-    reverse(mn.begin(), mn.end());
+    else if (remain == 0)
+    {
+        for (long long i = 1; i <= count8; i++)
+        {
+            cout << 8;
+        }
+    }
+    else
+    {
+        if (remain == 2)
+            cout << 1;
+        else if (remain == 3)
+        {
+            cout << 22;
+            count8--;
+        }
+        else if (remain == 4)
+        {
+            cout << 20;
+            count8--;
+        }
+        else if (remain == 5)
+            cout << 2;
+        else
+            cout << 6;
+        for (long long i = 1; i <= count8; i++)
+        {
+            cout << 8;
+        }
+    }
+    cout << "\n";
 
-    cout << mn << '\n' << mx;
+    while (n >= 3)
+    {
+        if (n % 2 == 1)
+        {
+            cout << 7;
+            n -= 3;
+        }
+        else
+        {
+            cout << 1;
+            n -= 2;
+        }
+    }
+    if (n == 2)
+    {
+        cout << 1;
+    }
+
     return 0;
 }

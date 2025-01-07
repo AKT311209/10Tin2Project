@@ -84,6 +84,8 @@ def check_status(html):
 
 
 def submit_problem(problem, source_code):
+    if source_code == "":
+        source_code = "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {return 0;\n}"
     url = "https://oj.codedream.edu.vn/problem/" + problem + "/submit"
     payload = {'csrfmiddlewaretoken': csrfmiddlewaretoken,
                'source': source_code,

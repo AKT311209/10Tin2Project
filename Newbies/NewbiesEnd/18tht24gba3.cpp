@@ -1,27 +1,22 @@
 #include <bits/stdc++.h>
 
 using namespace std;
+vector<long long> v;
 
-long long sum(long long n)
-{
-    long long total = 0;
-    long long current = 1;
-    long long next = 10;
-    while (current <= n)
-    {
-        long long end = min(next - 1, n);
-        long long count = end - current + 1;
-        long long digits = to_string(current).length();
-        total += count * digits * 45;
-        current *= 10;
-        next *= 10;
-    }
-    return total;
-}
-
-int main()
-{
+int main() {
     long long n;
     cin >> n;
-    cout << sum(n);
+
+    long long dig = log10(n) + 1;
+    v.push_back(0);
+    v.push_back(45);
+    for (int i = 2; i < dig; i++) {
+        v.push_back(v[i - 1] * 10 + 45 * pow(10, i - 1));
+    }
+
+    long long ans = 0;
+    ans+=v.back();
+    
+
+    cout << ans;
 }
