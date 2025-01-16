@@ -89,4 +89,6 @@ int main()
     }
 
     cout << res.top();
+
+    return 0;
 }
