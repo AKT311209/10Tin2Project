@@ -18,7 +18,6 @@ int main() {
         cin >> temp;
         people.push_back(temp);
     }
-
     stack <long long> st;
     for (long long i = 1; i <= n; i++) {
         while (!st.empty() && people[st.top()] <= people[i]) {

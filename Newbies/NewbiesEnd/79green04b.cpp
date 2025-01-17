@@ -1,36 +1,36 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main()
-{
+int main() {
     long long n;
     cin >> n;
 
-    if (n < 6)
-    {
-        cout << "-1\n";
+    if (n < 6) {
+        cout << -1 << "\n";
         return 0;
     }
 
-    long long a = 1;
-    long long b = 2;
-    long long c = n - a - b;
+    long long r = n % 3, k = 0;
+    long long a, b, c;
 
-    if (c <= b)
-    {
-        c = b + 1;
-        a = n - b - c;
+    if (r == 0) {
+        k = n / 3;
+        a = k - 1; b = k; c = k + 1;
+    } else if (r == 1) {
+        k = (n - 1) / 3;
+        a = k - 1; b = k; c = k + 2;
+    } else {
+        k = (n - 2) / 3;
+        a = k - 1; b = k + 1; c = k + 2;
     }
 
-    if (a > 0 && b > 0 && c > 0 && a != b && b != c && a != c)
-    {
-        vector<long long> nums = {a, b, c};
-        sort(nums.begin(), nums.end());
-        cout << nums[0] << " " << nums[1] << " " << nums[2] << "\n";
+    if (a <= 0 || b <= 0 || c <= 0) {
+        cout << -1 << "\n";
+        return 0;
     }
-    else
-    {
-        cout << "-1\n";
-    }
+
+    vector<long long> ans = {a, b, c};
+    sort(ans.begin(), ans.end());
+    cout << ans[0] << " " << ans[1] << " " << ans[2] << "\n";
     return 0;
 }
