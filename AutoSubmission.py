@@ -210,7 +210,7 @@ if len(Unsuccessful_submission) != 0 or len(Unsuccessful_check) != 0:
                             if status == "Accepted":
                                 AC_count += 1
                             else:
-                                not_AC.append(problem)
+                                not_AC.add(problem)
 
     if len(Unsuccessful_check) != 0:
         print("Do you want to recheck status of submissions with unknown status?")
@@ -231,7 +231,7 @@ if len(Unsuccessful_submission) != 0 or len(Unsuccessful_check) != 0:
                     if status == "Accepted":
                         AC_count += 1
                     else:
-                        not_AC.append(problem)
+                        not_AC.add(problem)
 
     not_AC = set(not_AC)
     print("Summary:")

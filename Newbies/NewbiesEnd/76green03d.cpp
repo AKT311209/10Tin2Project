@@ -1,42 +1,71 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
-long long sumD(const string &x) {
-    long long ans = 0;
-    for(char c : x) ans += (c - '0');
-    return ans;
-}
+int main()
+{
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    long long m, n, q;
+    cin >> m >> n >> q;
 
-int main(){
-    long long n;
-    cin >> n;
-    
-    string s = to_string(n);
-    long long bestS = sumD(s);
-    long long bestN = n;
-    
-    for(int i=0; i<(int)s.size(); i++){
-        if(s[i] == '0') continue;
-        
-        string tmp = s;
-        tmp[i] = char(tmp[i] - 1);
-        for(int j=i+1; j<(int)tmp.size(); j++){
-            tmp[j] = '9';
-        }
-        
-        while(tmp.size() > 1 && tmp[0] == '0'){
-            tmp.erase(tmp.begin());
-        }
-        
-        long long candVal = stoll(tmp);
-        long long candSum = sumD(tmp);
-        
-        if(candSum > bestS || (candSum == bestS && candVal > bestN)){
-            bestS = candSum;
-            bestN = candVal;
+    long long a[m + 1][n + 1];
+    long long sumrow[m + 1];
+    long long sumcol[n + 1];
+    memset(sumrow, 0, sizeof(sumrow));
+    memset(sumcol, 0, sizeof(sumcol));
+    for (long long i = 1; i <= m; i++)
+    {
+        for (long long j = 1; j <= n; j++)
+        {
+            cin >> a[i][j];
+            sumrow[i] += a[i][j];
+            sumcol[j] += a[i][j];
         }
     }
-    
-    cout << bestN << "\n";
-    return 0;
+
+    long long pref[m + 1][n + 1];
+    for (long long i = 1; i <= m; i++)
+    {
+        for (long long j = 1; j <= n; j++)
+        {
+            pref[i][j] = sumrow[i] + sumcol[j] - a[i][j];
+        }
+    }
+    long long res = LLONG_MIN;
+    for (long long i = 1; i <= m; i++)
+    {
+        for (long long j = 1; j <= n; j++)
+        {
+            if (pref[i][j] > res)
+            {
+                res = pref[i][j];
+            }
+        }
+    }
+
+    while (q--)
+    {
+        int type;
+        cin >> type;
+
+        if (type == 1)
+        {
+            long long x, y, d;
+            cin >> x >> y >> d;
+            // Increase a[x][y] by d
+            for (long long i = 1; i <= m; i++) pref[i][y] += d;
+            for (long long j = 1; j <= n; j++) pref[x][j] += d;
+            pref[x][y] -= d;
+
+            long long curmax = LLONG_MIN;
+            for (long long i = 1; i <= m; i++) curmax = max(curmax, pref[i][y]);
+            for (long long i = 1; i <= n; i++) curmax = max(curmax, pref[x][i]);
+            res = max(res, curmax);
+        }
+        else
+        {
+            cout << res << '\n';
+        }
+    }
 }
